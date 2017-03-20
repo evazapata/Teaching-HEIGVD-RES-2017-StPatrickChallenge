@@ -20,5 +20,5 @@ public interface IStreamProcessor {
    * @throws IOException
    */
   public void process(Reader in, Writer out) throws IOException;
-   
+  
 }

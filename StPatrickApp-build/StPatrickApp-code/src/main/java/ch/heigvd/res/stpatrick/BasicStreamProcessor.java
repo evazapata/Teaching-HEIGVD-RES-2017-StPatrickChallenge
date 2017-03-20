@@ -20,17 +20,26 @@ import java.io.Writer;
  */
 class BasicStreamProcessor implements IStreamProcessor {
 
+   private int type = 0;
+
+   BasicStreamProcessor(int type) {
+      this.type = type;
+   }
+
    @Override
    public void process(Reader in, Writer out) throws IOException {
-      
+
       BufferedReader br = new BufferedReader(in);
       BufferedWriter bw = new BufferedWriter(out);
-      
+
       int c = br.read();
-      
-      while (c != -1) {
-         // élimination des 'e' et 'E'
-         if ((char)c != 'e' && (char)c != 'E') {
+
+      if (type == 0) {
+         while (c != -1) {
+            bw.write(c);
+         }
+      } else if (type == 1) {
+         while (c != -1 && (char)c != 'e' && (char)c != 'E') {
             bw.write(c);
          }
       }
